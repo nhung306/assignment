@@ -8,7 +8,7 @@ namespace BusinessService.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Customer, CustomerDto>();
+            CreateMap<Customer, CustomerDto>().ReverseMap();
         }
     }
 }

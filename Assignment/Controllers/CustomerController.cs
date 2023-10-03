@@ -26,7 +26,7 @@ namespace Assignment.Controllers
         //[Route("create")]
         //public override async Task<CustomerModel> CreateAsync(CustomerModel customer)
         //{
-        //    return await base.CreateAsync(customer);
+        //    //return await _customerService.CreateAsync(customer);
         //}
     }
 }
