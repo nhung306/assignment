@@ -1,6 +1,7 @@
 ﻿using Assignment.Controllers.Model;
 using Assignment.DataAccess;
 using Assignment.DataAccess.Entities;
+using Assignment.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +45,39 @@ namespace Assignment.Controllers
                         };
 
             return response;
+        }
+        [HttpGet]
+        [Route("addData")]
+        public async Task<bool> AddProductToDb()
+        {
+            try
+            {
+                int numberOfRecords = 32760;
+
+                for (int i = 0; i < numberOfRecords; i++)
+                {
+
+                    var product = new Product()
+                    {
+                        Name = ProductService.GenerateRandomString(10),
+                        ImageUrl = ProductService.GetRandomImageUrl(),
+                        Price = ProductService.GenerateRandomDecimal(),
+                        ShopId = ProductService.GenerateRandomNumber(1, 3)
+                    };
+
+
+                    _dbContext.Products.Add(product);
+
+                    int rowsAffected = _dbContext.SaveChanges();
+                    Console.WriteLine($"Inserted {rowsAffected} rows into the table.");
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return false;
+            }
         }
     }
 }

@@ -11,47 +11,6 @@ namespace Assignment.Services
         }
         public void AddProduct(Product product)
         {
-
-
-        }
-
-
-        public void RandomInsertCustomer()
-        {
-            try
-            {
-                var context = new AssignmentDbContext();
-                context.Database.EnsureCreated();
-
-                // Number of random records to insert
-                int numberOfRecords = 10;
-
-                for (int i = 0; i < numberOfRecords; i++)
-                {
-                    // Generate random data
-                    string randomString = GenerateRandomString(10); // Adjust the length as needed
-                    int randomNumber = GenerateRandomNumber(1, 100);
-                    DateTime randomDateTime = GenerateRandomDate(new DateTime(1950, 1, 1), new DateTime(2020, 12, 31));
-                    string randomEmail = GenerateRandomEmail();
-
-                    var customer = new Customer()
-                    {
-                        FullName = GenerateRandomString(10),
-                        DateOfBirth = GenerateRandomDate(new DateTime(1950, 1, 1), new DateTime(2020, 12, 31)),
-                        Email = GenerateRandomEmail()
-                    };
-
-
-                    context.Add(customer);
-
-                    int rowsAffected = context.SaveChanges();
-                    Console.WriteLine($"Inserted {rowsAffected} rows into the table.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-            }
         }
 
         public static string GenerateRandomString(int length)
@@ -62,10 +21,10 @@ namespace Assignment.Services
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public static int GenerateRandomNumber(int min, int max)
+        public static decimal GenerateRandomDecimal()
         {
             Random random = new Random();
-            return random.Next(min, max + 1);
+            return new decimal(random.NextDouble());
         }
 
         public static DateTime GenerateRandomDate(DateTime startDate, DateTime endDate)
@@ -84,7 +43,23 @@ namespace Assignment.Services
 
             return randomEmail;
         }
-
+        public static string GetRandomImageUrl()
+        {
+            List<string> imageUrls = new List<string>
+        {
+            "https://example.com/image1.jpg",
+            "https://example.com/image2.jpg",
+            "https://example.com/image3.jpg"
+        };
+            Random random = new Random();
+            int randomIndex = random.Next(imageUrls.Count);
+            return imageUrls[randomIndex];
+        }
+        public static int GenerateRandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max + 1);
+        }
     }
 }
 
