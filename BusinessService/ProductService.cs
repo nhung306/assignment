@@ -1,17 +1,18 @@
-﻿using Assignment.DataAccess;
-using Assignment.DataAccess.Entities;
-using MySql.Data.MySqlClient;
+﻿using AutoMapper;
+using BusinessService.Contracts;
+using DataAccess;
+using DataAccess.Entities;
 
-namespace Assignment.Services
+namespace BusinessService
 {
-    public class ProductService
+    public class ProductService :BaseService, IProductService
     {
-        public ProductService()
+        public ProductService(AssignmentDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
+
         public void AddProduct(Product product)
         {
-
 
         }
 
@@ -20,8 +21,7 @@ namespace Assignment.Services
         {
             try
             {
-                var context = new AssignmentDbContext();
-                context.Database.EnsureCreated();
+                _dbContext.Database.EnsureCreated();
 
                 // Number of random records to insert
                 int numberOfRecords = 10;
@@ -42,9 +42,9 @@ namespace Assignment.Services
                     };
 
 
-                    context.Add(customer);
+                    _dbContext.Add(customer);
 
-                    int rowsAffected = context.SaveChanges();
+                    int rowsAffected = _dbContext.SaveChanges();
                     Console.WriteLine($"Inserted {rowsAffected} rows into the table.");
                 }
             }
@@ -87,4 +87,3 @@ namespace Assignment.Services
 
     }
 }
-

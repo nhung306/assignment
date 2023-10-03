@@ -1,4 +1,4 @@
-﻿namespace Assignment.DataAccess.Entities
+﻿namespace DataAccess.Entities
 {
 	public abstract class BaseEntity
 	{

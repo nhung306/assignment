@@ -1,0 +1,8 @@
+﻿.vs
+Assignment/bin
+Assignment/obj
+BusinessService/bin
+BusinessService/obj
+DataAccess/obj/Debug
+Service/obj
+DataAccess/bin

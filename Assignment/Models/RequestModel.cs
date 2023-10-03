@@ -1,11 +1,10 @@
-﻿using System;
-namespace Assignment.Controllers.Model
+﻿namespace Assignment.Models
 {
-	public class Request
-	{
-		public Request()
-		{
-		}
+    public class RequestModel
+    {
+        public RequestModel()
+        {
+        }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public string SearchText { get; set; }

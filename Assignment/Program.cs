@@ -1,6 +1,7 @@
-﻿using Assignment.DataAccess;
+﻿using BusinessService;
+using BusinessService.Contracts;
+using DataAccess;
 using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +13,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AssignmentDbContext>(options =>
         options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 var app = builder.Build();
 

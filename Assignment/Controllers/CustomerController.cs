@@ -1,31 +1,33 @@
-﻿using Assignment.Controllers.Model;
-using Assignment.DataAccess;
-using Assignment.DataAccess.Entities;
+﻿using Assignment.Models;
+using BusinessService.Contracts;
+using BusinessService.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
 
 namespace Assignment.Controllers
 {
     [ApiController]
     [Route("/api/customer")]
-    public class CustomerController : BaseController<Customer>
+    public class CustomerController : BaseController
     {
-		public CustomerController(AssignmentDbContext dbContext) : base(dbContext)
+        private ICustomerService _customerService { get; set; }
+
+        public CustomerController(ICustomerService customerService) : base()
         {
+            _customerService = customerService;
 		}
         [HttpGet]
         [Route("getAllData")]
-        public override async Task<BaseResponse<Customer>> GetAllAsync()
+        public async Task<BaseResponseDto<CustomerDto>> GetAllAsync()
         {
-            return await base.GetAllAsync();
+            return await _customerService.GetAllAsync();
         }
 
-        [HttpPost]
-        [Route("create")]
-        public override async Task<Customer> CreateAsync(Customer customer)
-        {
-            return await base.CreateAsync(customer);
-        }
+        //[HttpPost]
+        //[Route("create")]
+        //public override async Task<CustomerModel> CreateAsync(CustomerModel customer)
+        //{
+        //    return await base.CreateAsync(customer);
+        //}
     }
 }
 

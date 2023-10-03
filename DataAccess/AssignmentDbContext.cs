@@ -1,12 +1,10 @@
-﻿using System;
-using Assignment.DataAccess.Entities;
+﻿using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
-namespace Assignment.DataAccess
+namespace DataAccess
 {
-	public class AssignmentDbContext : DbContext
-	{
+    public class AssignmentDbContext : DbContext
+    {
         public AssignmentDbContext()
         {
         }
@@ -21,6 +19,5 @@ namespace Assignment.DataAccess
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Order>().ToTable("Order").HasKey(x => new { x.CustomerID, x.ProductID });
         }
-	}
+    }
 }
-

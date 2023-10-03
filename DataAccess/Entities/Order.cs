@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Assignment.DataAccess.Entities
+namespace DataAccess.Entities
 {
 	public class Order : BaseEntity
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Assignment.DataAccess.Entities
+namespace DataAccess.Entities
 {
 	public class Customer : BaseEntity
 	{
